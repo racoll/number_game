@@ -12,10 +12,26 @@ var resetButton;
 guessField.focus();
 
 
-function checkGuess(e) {
+function checkForNumber(e) {
+    console.log('test');
+    
     e.preventDefault()
 
-    var userGuess = Number(guessField.value);
+    var userGuess = parseInt(guessField.value);    
+
+    if (!Number.isInteger(userGuess)) {
+        lowOrHi.textContent = 'Please enter a number!';
+        lastResult.textContent = 'Error!'
+        lastResult.style.backgroundColor = 'red';
+    } else {        
+        checkGuess(userGuess);
+    }
+    
+};
+
+
+function checkGuess(userGuess) {
+
     if (guessCount === 1) {
       guesses.textContent = 'Previous guesses: ';
     }
@@ -36,28 +52,22 @@ function checkGuess(e) {
             lowOrHi.textContent = 'Last guess was too low!';
         } else if(userGuess > randomNumber) {
             lowOrHi.textContent = 'Last guess was too high!';
-        } else if(userGuess != Number) {
-            lowOrHi.textContent = 'Please enter a number!';
-        }
-    }
-
-    if (userGuess != Number) {
-        
-    }
+        };
+    };
    
     guessCount++;
     guessField.value = '';
     guessField.focus();
-  }
+  };
 
-  guessSubmit.addEventListener('click', checkGuess);
+  guessSubmit.addEventListener('click', checkForNumber);
 
-  guessField.addEventListener('keyup', function(e) {
-      e.preventDefault();
-      if (e.keyCode === 13) {
-          guessSubmit.click();
-      }
-  });
+//   guessField.addEventListener('keyup', function(e) {
+//       e.preventDefault();
+//       if (e.keyCode === 13) {
+//         //   guessSubmit.click();
+//       }
+//   });
 
   function setGameOver() {
     guessField.disabled = true;
