@@ -21,7 +21,9 @@ function checkForNumber(e) {
 
     if (!Number.isInteger(userGuess)) {
         lowOrHi.textContent = 'Please enter a number!';
-        lastResult.textContent = 'Error!'
+        // lastResult.textContent = 'Error! ' + guessField.value + ' is not a number';
+        lastResult.textContent = `Error! ${guessField.value} is not a number`;
+
         lastResult.style.backgroundColor = 'red';
     } else {        
         checkGuess(userGuess);
